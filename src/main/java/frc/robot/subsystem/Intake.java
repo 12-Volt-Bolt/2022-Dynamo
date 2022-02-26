@@ -8,7 +8,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.classes.Equations;
+import frc.robot.tools.Equations;
 
 public class Intake extends SubsystemBase {
   public enum IntakePosition {

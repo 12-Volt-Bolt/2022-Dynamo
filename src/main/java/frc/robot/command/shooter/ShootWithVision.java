@@ -7,8 +7,8 @@ package frc.robot.command.shooter;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.classes.Equations;
-import frc.robot.classes.Timer;
+import frc.robot.tools.Equations;
+import frc.robot.tools.Timer;
 import frc.robot.command.storage.EmptyThroughShooter;
 import frc.robot.subsystem.Intake.IntakePosition;
 
