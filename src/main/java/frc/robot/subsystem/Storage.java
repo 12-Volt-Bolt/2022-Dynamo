@@ -18,7 +18,7 @@ public class Storage extends SubsystemBase {
   
   private double offSet = 0.7;
   private int goal = 0;
-  private boolean automaticStorage = true;
+  private boolean automaticStorage = false;
   private boolean doStorage = false;
   private boolean userStorage = true;
 
@@ -55,8 +55,7 @@ public class Storage extends SubsystemBase {
    * Set the location (rotation value) for the storage wheel to move to.
    * @param newGoal New rotation value.
    */
-  public void setGoal(int newGoal)
-  {
+  public void setGoal(int newGoal) {
     goal = newGoal;
   }
   
@@ -65,27 +64,30 @@ public class Storage extends SubsystemBase {
    * 
    * @param amount The amount to add to the goal.
    */
-  public void updateGoal(int amount)
-  {
-    goal += amount;
+  public void updateGoal(int amount) {
+    if (doStorage == true) {
+      goal += amount;
+    }
   }
 
   public int getGoal() {
     return goal;
   }
   
-  public void updateGoalUser(int amount)
-  {
+  public void updateGoalUser(int amount) {
     if (userStorage){
-      goal += amount;
+      updateGoal(amount);
     }
   }
   
-  public void updateOffsetUser(int amount)
-  {
+  public void updateOffsetUser(int amount) {
     if (userStorage){
       offSet += amount * 0.05;
     }
+  }
+
+  public void resetOffest() {
+
   }
 
   public void setUserStorage(boolean state) {
@@ -120,14 +122,12 @@ public class Storage extends SubsystemBase {
    * Sets the power of the storage wheel's motor.
    * @param power Storage wheel motor's percentage output.
    */
-  public void storagePower(double power)
-  {
+  public void storagePower(double power) {
     storageMotor.set(VictorSPXControlMode.PercentOutput, power * 0.25);
   }
   
   /*
-  public void storageStop()
-  {
+  public void storageStop() {
     storageMotor.set(VictorSPXControlMode.PercentOutput, 0);
   }
   */
@@ -136,8 +136,7 @@ public class Storage extends SubsystemBase {
    * Sets the power of the feeder wheel.
    * @param power Feeder wheel's percentage output.
    */
-  public void setFeederMotor(double power)
-  {
+  public void setFeederMotor(double power) {
     feederMotor.set(VictorSPXControlMode.PercentOutput, -Math.abs(power));
   }
 }

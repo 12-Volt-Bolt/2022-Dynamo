@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
   public static ShootWithVision shootWithVision = new ShootWithVision();
 
   public static Joystick joy1 = new Joystick(0);
-  public static EasyPov storagePov = new EasyPov(new int[] {0, 0, 1, 0, 0, 0, -1, 0}, 0);
+  public static EasyPov storagePov = new EasyPov(new int[] {0, 0, -1, 0, 0, 0, 1, 0}, 0);
   public static Switch storageInputSwitch = new Switch(false);
   public static Switch storageResetSwitch = new Switch(false);
 
@@ -64,13 +64,10 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // Drive
-
     double yPow = joy1.getRawAxis(frc.robot.constant.controllermap.axis.Drivetrain.Y_AXIS);
     double zPow = joy1.getRawAxis(frc.robot.constant.controllermap.axis.Drivetrain.Z_AXIS);
     yPow = Equations.exponentialNegativeBelowZero(yPow, 2);
-    //zPow = Equations.exponentialNegativeBelowZero(zPow, 2);
     yPow *= 0.7;
-    //zPow *= 0.7;
     drivetrain.arcadeDriveTurnThrottle(yPow, zPow);
     
     // Intake up/down
@@ -128,6 +125,7 @@ public class Robot extends TimedRobot {
       }
     }
 
+    /*
     // Shoot With Vision
     if (
          joy1.getRawButtonPressed(frc.robot.constant.controllermap.button.Shooter.START)
@@ -139,6 +137,7 @@ public class Robot extends TimedRobot {
           shootWithVision.cancel();
         }
       }
+      */
   }
 
   @Override
